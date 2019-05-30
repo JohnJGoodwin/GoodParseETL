@@ -17,10 +17,10 @@ namespace GoodParseETL
         //Set up some initial variables
         private string path = "";
 
-        public FileOperations()
+        public FileOperations(String filePath)
         {
             //INitialize the variables at instantiation
-            path = ParseConfig.m_FileLocation;
+            path = filePath;
         }
 
         //Read a row from the text file and send it to ParsingOperations to be parsed into its values.

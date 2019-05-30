@@ -37,7 +37,7 @@ namespace GoodParseETL
                 DBOps.LoadConfig(configVal);
 
                 //Go process the file and parse it into the destination database/table
-                FileOperations FileOps = new FileOperations();
+                FileOperations FileOps = new FileOperations(ParseConfig.m_FileLocation );
                 FileOps.ParseRows(Parser);
                 DBOps.WriteQue();
             }
