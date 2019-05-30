@@ -11,7 +11,7 @@ namespace GoodParseETL
     /// <summary>
     /// Written By John J Goodwin 5/29/2019
     /// </summary>
-    class DBOperations : ParseConfig
+    class DBOperations : IDisposable 
     {
         //Initialize some variables and objects
         private string connectionString = "";
@@ -53,7 +53,7 @@ namespace GoodParseETL
             }
             catch(Exception ex)
             {
-                throw ex;
+                Console.WriteLine("DBOperations: Attempt to store values from Query result failed{0}{1}", Environment.NewLine, ex.StackTrace);
             }
         }
 
@@ -67,7 +67,7 @@ namespace GoodParseETL
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine("DBOperations: Attempt to connect to an SQL database failed{0}{1}", Environment.NewLine, ex.StackTrace);
             }
             return sqlConn;
         }
@@ -97,11 +97,30 @@ namespace GoodParseETL
                     }
                     catch(Exception ex)
                     {
-                        throw ex;
+                        Console.WriteLine("DBOperations: Attempt to call an SQL stored Procedure failed{0}{1}", Environment.NewLine, ex.StackTrace);
                     }
                 }
                 conn.Close();
             }
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // dispose managed resources
+                conn.Close();
+                sqlCmd.Dispose();
+                sqlDA.Dispose();
+                ds.Dispose();
+            }
+            // free native resources
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
 

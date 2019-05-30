@@ -13,7 +13,7 @@ namespace GoodParseETL
     /// In theory you could have hundreds of different parse routines here to handle all of your parsing needs.
     /// Each entry in the ETLManager would dictate which parser method is used with which input file.
     /// </summary>
-    class ParsingOperations : ParseConfig
+    class ParsingOperations
     {
         Queue ParsedRows = new Queue();
         public ParsingOperations()

@@ -12,7 +12,7 @@ namespace GoodParseETL
     /// My full version has directory management & file targeting Regex processes to selectivly target large groups of files.
     /// This is really just a starting point for you to expand.
     /// </summary>
-    class FileOperations : ParseConfig
+    class FileOperations
     {
         //Set up some initial variables
         private string path = "";
