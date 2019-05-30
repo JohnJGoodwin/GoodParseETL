@@ -1,5 +1,6 @@
 # GoodParseETL
 Simple scalable ETL tool
+Written By John J. Goodwin
 
 The system utilizes an SQL database table for ETL definitions. The SQL columns are used in the code as folllows;
 ID              =     Passed on commandline to tell the code which ETL definition to use. 
@@ -17,5 +18,7 @@ A stored procedure is used to read the ETL definition (profile) into the system 
 
 Builds a queue of process results. Each result is transformed into a Stored Procedure call string within the queue.
 When the file read is complete, the contents of the queue (All store procedure calls now) are sent to the destination database on mass.
+
+You'll need to create an ETL Management database and modify the database connection string in the app.config file to point the application to your SQL server before attempting to run this program.
 
 
